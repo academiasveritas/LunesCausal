@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#21355b">
+<title>Registro Lunes Causal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: panel de marca a la izquierda (degradado Veritas) y formulario por pasos a la derecha; en celular el panel se compacta arriba. Línea gráfica de la Academia, deliberadamente en tema claro. */
+:root{
+  --night:#16233d; --navy:#21355b; --blue:#396cb0; --teal:#64b39f; --teal-d:#2f7d69;
+  --clean:#f0f3fa; --mint:#eaf4f2; --card:#ffffff; --ink:#21355b; --text:#3b4865; --mute:#64708c; --line:#dce3ef;
+  --wa:#1f9d57; --err:#b23a2a; --on-dark:#ffffff; --on-dark-mute:#cdd6e8;
+  --grad:linear-gradient(45deg,#396cb0 0%,#21355b 55%,#16233d 100%);
+  --grad-btn:linear-gradient(90deg,#64b39f 0%,#396cb0 52%,#21355b 100%);
+  --serif:'Lora',Georgia,'Times New Roman',serif;
+  --sans:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --r:16px; --ease:cubic-bezier(.16,1,.3,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:var(--clean);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:600;margin:0;line-height:1.18;text-wrap:balance}
+p{margin:0}
+.app{min-height:100%;display:grid;grid-template-columns:minmax(320px,42%) 1fr}
+/* panel */
+.side{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;background:var(--grad);color:var(--on-dark);padding-block:44px;padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:40px;display:flex;flex-direction:column;gap:28px}
+.side::before{content:"";position:absolute;right:-230px;top:-250px;width:440px;height:440px;border-radius:50%;background:var(--teal);opacity:.85}
+.side::after{content:"";position:absolute;left:-120px;bottom:-160px;width:360px;height:360px;border-radius:50%;border:56px solid rgba(100,179,159,.16)}
+.side>*{position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:46px;height:auto}
+.brand span{display:flex;flex-direction:column;line-height:1.05}
+.brand small{font-size:10px;letter-spacing:.32em;color:var(--teal);font-weight:700}
+.brand b{font-size:17px;letter-spacing:.14em;font-weight:800}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.side h1{color:var(--on-dark);font-size:clamp(30px,3.6vw,44px)}
+.side h1 em{font-style:italic;color:var(--teal);font-weight:500}
+.side .lede{color:var(--on-dark-mute);font-size:16px;max-width:42ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08)}
+.next{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);padding:16px 18px;display:flex;gap:16px;align-items:center;backdrop-filter:blur(4px)}
+.cal{width:64px;flex:none;border-radius:12px;background:var(--card);color:var(--navy);text-align:center;overflow:hidden}
+.cal i{display:block;font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.12em;background:var(--teal);color:var(--night);padding:3px 0}
+.cal b{display:block;font-family:var(--serif);font-size:28px;line-height:1.15;padding:2px 0 4px}
+.next p{font-size:14px;color:var(--on-dark-mute)}
+.next p strong{display:block;color:var(--on-dark);font-size:15.5px}
+.how{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
+.how li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--on-dark-mute)}
+.how li b{color:var(--on-dark)}
+.how li span.n{width:24px;height:24px;flex:none;border-radius:50%;border:1.5px solid var(--teal);color:var(--teal);display:grid;place-items:center;font-size:12px;font-weight:800;margin-top:1px}
+.side .fine{margin-top:auto;font-family:var(--serif);font-style:italic;color:var(--on-dark-mute);font-size:14px}
+/* main */
+.main{min-height:100vh;min-height:100dvh;align-items:center;padding-block:44px 56px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;justify-content:center}
+.form{width:100%;max-width:600px;display:flex;flex-direction:column;gap:22px}
+.prog{display:flex;flex-direction:column;gap:10px}
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:12.5px;font-weight:700;color:var(--mute);letter-spacing:.04em}
+.prog-top b{color:var(--teal-d);text-transform:uppercase;letter-spacing:.14em;font-size:11.5px}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--grad-btn);border-radius:99px;transition:width .5s var(--ease)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px clamp(20px,4vw,36px);box-shadow:0 24px 50px -30px rgba(33,53,91,.35)}
+.step{display:flex;flex-direction:column;gap:20px;animation:in .45s var(--ease)}
+@keyframes in{from{opacity:.001;transform:translateY(10px)}to{opacity:1;transform:none}}
+.step h2{font-size:clamp(23px,3vw,28px)}
+.step .hint{color:var(--mute);font-size:14.5px;margin-top:-10px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label,.legend{font-size:12.5px;font-weight:700;color:var(--ink);letter-spacing:.02em}
+.field label .opt{font-weight:500;color:var(--mute)}
+.in{font:inherit;font-size:16px;color:var(--ink);background:var(--clean);border:1.5px solid transparent;border-radius:12px;padding:13px 14px;width:100%;transition:border-color .2s,background .2s,box-shadow .2s}
+.in::placeholder{color:#97a1b8}
+.in:focus{outline:none;background:var(--card);border-color:var(--teal);box-shadow:0 0 0 4px rgba(100,179,159,.18)}
+.in[aria-invalid="true"]{border-color:var(--err);background:#fdf3f1}
+.phone{display:flex;gap:8px}
+.phone select{width:auto;flex:none;padding-right:8px}
+.err{font-size:13px;color:var(--err);font-weight:600;min-height:0}
+.err:empty{display:none}
+.opts{display:grid;gap:10px}
+.opts.two{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt label{display:flex;align-items:center;gap:14px;padding:15px 16px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;transition:border-color .2s,background .2s,transform .15s;font-weight:600;color:var(--ink);font-size:15px;line-height:1.35}
+.opt label small{display:block;font-weight:500;color:var(--mute);font-size:13px;margin-top:2px}
+.opt .dot{width:22px;height:22px;flex:none;border-radius:50%;border:2px solid #b9c6df;display:grid;place-items:center;transition:all .2s}
+.opt .dot::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--card);transform:scale(0);transition:transform .2s var(--ease)}
+.opt input:hover+label{border-color:#b9c6df}
+.opt input:checked+label{border-color:var(--teal);background:var(--mint)}
+.opt input:checked+label .dot{border-color:var(--teal);background:var(--teal)}
+.opt input:checked+label .dot::after{transform:scale(1)}
+.opt input:focus-visible+label{box-shadow:0 0 0 4px rgba(100,179,159,.3)}
+.opt label .big{font-family:var(--serif);font-size:19px;font-weight:600;min-width:74px}
+.other{margin-top:-2px}
+.priv{background:var(--clean);border-radius:14px;padding:16px 18px;font-size:13.5px;color:var(--text);display:flex;flex-direction:column;gap:8px;max-height:260px;overflow:auto;border:1px solid var(--line)}
+.priv h3{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--teal-d)}
+.priv ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:4px}
+.priv a,.note a{color:var(--blue);font-weight:700}
+.check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;font-size:14px;color:var(--ink);line-height:1.45}
+.check input{width:20px;height:20px;flex:none;accent-color:var(--teal-d);margin-top:1px;cursor:pointer}
+.check:has(input:checked){border-color:var(--teal);background:var(--mint)}
+.check.req[aria-invalid="true"]{border-color:var(--err)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.btn{font:inherit;font-weight:700;font-size:15.5px;border:0;border-radius:14px;padding:15px 24px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;text-decoration:none;transition:transform .15s,box-shadow .2s,opacity .2s}
+.btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.btn.primary{background:var(--grad-btn);color:#fff;box-shadow:0 12px 26px -12px rgba(33,53,91,.6)}
+.btn.primary:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--mute);padding-inline:6px}
+.btn.ghost:hover{color:var(--ink)}
+.btn.wa{background:var(--wa);color:#fff;box-shadow:0 12px 26px -12px rgba(31,157,87,.7);width:100%;justify-content:center;font-size:16.5px;padding:17px 24px}
+.btn svg{width:20px;height:20px;flex:none}
+.kbd{font-size:12px;color:var(--mute)}
+.kbd kbd{font-family:var(--sans);font-size:11px;font-weight:700;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:var(--card);color:var(--navy)}
+.sum{display:grid;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.sum div{display:grid;grid-template-columns:150px 1fr auto;gap:12px;padding:11px 16px;border-top:1px solid var(--line);align-items:baseline;font-size:14.5px}
+.sum div:first-child{border-top:0}
+.sum dt{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.sum dd{margin:0;color:var(--ink);font-weight:600;min-width:0;overflow-wrap:anywhere}
+.sum button{font:inherit;font-size:12.5px;font-weight:700;color:var(--blue);background:none;border:0;cursor:pointer;padding:0}
+.note{font-size:13px;color:var(--mute);line-height:1.5}
+.fallback{display:flex;flex-direction:column;gap:10px;background:var(--clean);border-radius:14px;padding:14px 16px;font-size:13.5px}
+.fallback .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fallback code{font-family:var(--sans);font-weight:800;color:var(--ink);font-size:15px;user-select:all}
+.mini{font:inherit;font-size:12.5px;font-weight:700;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.mini:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.done{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.done .tick{width:56px;height:56px;border-radius:50%;background:var(--mint);display:grid;place-items:center;color:var(--teal-d)}
+.done .tick svg{width:28px;height:28px}
+.foot{font-size:12px;color:var(--mute);text-align:center}
+@media (max-height:760px) and (min-width:861px){ .how{display:none} }
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  .side{position:relative;height:auto;padding-block:22px 22px;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));gap:14px}
+  .side::before{width:220px;height:220px;right:-110px;top:-120px}
+  .side>div:nth-child(2){gap:8px!important}
+  .side h1{font-size:27px}
+  .side .lede{font-size:14.5px}
+  .chips span{font-size:11.5px;padding:5px 10px}
+  .next{padding:12px 14px;gap:12px}
+  .cal{width:52px}.cal b{font-size:22px}
+  .next p{font-size:12.5px}.next p strong{font-size:14px}
+  .how,.side .fine,.side::after{display:none}
+  .started .side .lede,.started .side .chips,.started .side .next{display:none}
+  .started .side{padding-block:16px;gap:10px}
+  .started .side h1{font-size:21px}
+  .started .side h1 em{display:inline}
+  .main{min-height:0;align-items:flex-start;padding-block:18px 32px;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+  .form{gap:14px}
+  .card{border-radius:18px;padding:22px 18px}
+  .step{gap:16px}
+  .kbd{display:none}
+  .nav{flex-direction:column-reverse;align-items:stretch}
+  .nav .btn{justify-content:center;width:100%}
+  .nav .btn.ghost{padding-block:10px}
+}
+@media (max-width:520px){
+  .sum div{grid-template-columns:1fr auto;gap:2px 12px}
+  .sum dt{grid-column:1/-1}
+  .opt label{padding:13px 14px}
+  .step h2{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<style>html,body{margin:0}</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><img src="data:image/png;base64,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" alt=""><span><small>ACADEMIA</small><b>VERITAS</b></span></div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span class="eyebrow">Lunes Causal · Registro</span>
+      <h1>Arranca tu semana <em>con el control</em></h1>
+      <p class="lede">15 minutos cada lunes para que dueños y directores de PyME planeen su semana y detecten qué depende solo de ellos.</p>
+    </div>
+    <div class="chips"><span>Lunes 6:00 a 6:15 a.m.</span><span>Por Zoom</span><span>Gratis</span><span>Termina a las 6:15 en punto</span></div>
+    <div class="next">
+      <div class="cal"><i id="calM">NOV</i><b id="calD">2</b></div>
+      <p><strong id="nextTxt">Próxima sesión: lunes 2 de noviembre</strong>El enlace llega por WhatsApp solo a quienes se registran.</p>
+    </div>
+    <ol class="how">
+      <li><span class="n">1</span><span><b>Regístrate en un minuto.</b> Cuatro preguntas y el aviso de privacidad.</span></li>
+      <li><span class="n">2</span><span><b>Envía tu registro por WhatsApp.</b> Así confirmamos tu lugar.</span></li>
+      <li><span class="n">3</span><span><b>Recibe el enlace el domingo a las 8:00 p.m.</b> y un recordatorio el lunes a las 5:45 a.m.</span></li>
+      <li><span class="n">4</span><span><b>Conéctate con una hoja a la mano.</b> Sales con tu semana planeada.</span></li>
+    </ol>
+    <p class="fine">De la dispersión al control: 15 minutos que definen tu semana.</p>
+  </aside>
+
+  <main class="main">
+    <form class="form" id="f" novalidate>
+      <div class="prog" id="prog">
+        <div class="prog-top"><b id="stepName">Tus datos</b><span id="stepNum">Paso 1 de 5</span></div>
+        <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
+      </div>
+      <div class="card" id="card" aria-live="polite"></div>
+      <p class="foot">Academia Veritas · Transformando la incertidumbre en certeza operativa</p>
+    </form>
+  </main>
+</div>
+
+<script>
+const WHATSAPP = '528119971557';
+const WHATSAPP_TXT = '+52 81 1997 1557';
+const EMAIL = 'academiasveritas@gmail.com';
+const PRIVACY = 'https://drive.google.com/file/d/1uFgkNh28rmlPzN1fqDicFNCJbhdJ_Xu7/view?usp=sharing';
+const KEY = 'lc-registro-v1';
+
+const ROLES = ['Dueño o socio','Director general','Gerente o mando medio','Colaborador','Otro'];
+const SIZES = [['1 a 4','personas'],['5 a 14','personas'],['15 a 50','personas'],['51 a 150','personas'],['Más de 150','personas']];
+const PAINS = [['Mi equipo me pregunta todo','Las dudas del día pasan por mí'],['Apago fuegos todo el día','Lo urgente se come lo importante'],['No sé por dónde empezar','Tengo demasiados pendientes a la vez'],['Otro','Lo escribo yo']];
+const STEPS = ['Tus datos','Tu empresa','Tu equipo','Tu semana','Privacidad','Confirmar'];
+
+let S = {name:'',cc:'52',phone:'',email:'',company:'',role:'',roleOther:'',size:'',pain:'',painOther:'',privacy:false,promo:false,step:0,sent:false};
+try{ const d = JSON.parse(localStorage.getItem(KEY)||'null'); if(d) S = Object.assign(S,d,{sent:false}); }catch(e){}
+const save = () => { try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} };
+
+/* próxima sesión: el primer lunes desde el 2 de noviembre de 2026 */
+const MES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+function nextMonday(){
+  const now = new Date(); const start = new Date(2026,10,2,6,15);
+  let d = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const add = (8 - d.getDay()) % 7; d.setDate(d.getDate()+add);
+  if (add===0 && (now.getHours()>6 || (now.getHours()===6 && now.getMinutes()>=15))) d.setDate(d.getDate()+7);
+  return d < new Date(2026,10,2) ? new Date(2026,10,2) : d;
+}
+const NM = nextMonday();
+const NM_TXT = 'lunes ' + NM.getDate() + ' de ' + MES[NM.getMonth()];
+document.getElementById('calM').textContent = MES[NM.getMonth()].slice(0,3).toUpperCase();
+document.getElementById('calD').textContent = NM.getDate();
+document.getElementById('nextTxt').textContent = 'Próxima sesión: ' + NM_TXT;
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ICON_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const ICON_WA = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>';
+
+function opts(name, list, val, cls){
+  return '<div class="opts '+(cls||'')+'" role="radiogroup">' + list.map((o,i)=>{
+    const [t,sub] = Array.isArray(o)?o:[o,''];
+    const id = name+'-'+i;
+    return '<div class="opt"><input type="radio" name="'+name+'" id="'+id+'" value="'+esc(t)+'"'+(val===t?' checked':'')+'><label for="'+id+'"><span class="dot"></span>'
+      + (name==='size' ? '<span class="big">'+esc(t)+'</span><span>'+esc(sub)+'</span>' : '<span>'+esc(t)+(sub?'<small>'+esc(sub)+'</small>':'')+'</span>') + '</label></div>';
+  }).join('') + '</div>';
+}
+function nav(first, label){
+  return '<div class="nav">' + (first ? '<span class="kbd">Presiona <kbd>Enter</kbd> para continuar</span>' : '<button type="button" class="btn ghost" id="back">← Atrás</button>')
+    + '<button type="submit" class="btn primary">'+(label||'Continuar')+ICON_ARROW+'</button></div>';
+}
+
+function render(){
+  const i = S.step, card = $('#card');
+  const wasStarted = document.querySelector('.app').classList.contains('started');
+  document.querySelector('.app').classList.toggle('started', i>0 || S.sent);
+  if (wasStarted || i>0) { if (window.matchMedia('(max-width:860px)').matches) window.scrollTo({top:0,behavior:'smooth'}); }
+  $('#stepName').textContent = STEPS[i];
+  $('#stepNum').textContent = S.sent ? 'Listo' : (i<5 ? 'Paso '+(i+1)+' de 5' : 'Último paso');
+  $('#barFill').style.width = (S.sent?100:Math.round(i/5*100))+'%';
+  let h = '';
+  if (S.sent) h = doneView();
+  else if (i===0) h = '<div class="step"><h2>¿A quién le enviamos el enlace?</h2><p class="hint">Te lo mandamos por WhatsApp el domingo a las 8:00 p.m.</p>'
+    + '<div class="field"><label for="name">Nombre completo</label><input class="in" id="name" autocomplete="name" placeholder="Ej. Alejandra Treviño" value="'+esc(S.name)+'"><span class="err" id="e-name"></span></div>'
+    + '<div class="field"><label for="phone">WhatsApp</label><div class="phone"><select class="in" id="cc" aria-label="Lada del país"><option value="52"'+(S.cc==='52'?' selected':'')+'>🇲🇽 +52</option><option value="1"'+(S.cc==='1'?' selected':'')+'>🇺🇸 +1</option><option value="other"'+(S.cc==='other'?' selected':'')+'>Otro</option></select><input class="in" id="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="81 1234 5678" value="'+esc(S.phone)+'"></div><span class="err" id="e-phone"></span></div>'
+    + '<div class="field"><label for="email">Correo <span class="opt">(opcional)</span></label><input class="in" id="email" type="email" autocomplete="email" placeholder="tu@empresa.com" value="'+esc(S.email)+'"><span class="err" id="e-email"></span></div>'
+    + nav(true) + '</div>';
+  else if (i===1) h = '<div class="step"><h2>¿Dónde trabajas y qué haces?</h2>'
+    + '<div class="field"><label for="company">Empresa</label><input class="in" id="company" autocomplete="organization" placeholder="Nombre de tu empresa" value="'+esc(S.company)+'"><span class="err" id="e-company"></span></div>'
+    + '<div class="field"><span class="legend" id="l-role">Tu puesto</span>'+opts('role',ROLES,S.role,'two')
+    + '<input class="in other" id="roleOther" placeholder="Escribe tu puesto" value="'+esc(S.roleOther)+'"'+(S.role==='Otro'?'':' hidden')+'><span class="err" id="e-role"></span></div>'
+    + nav() + '</div>';
+  else if (i===2) h = '<div class="step"><h2>¿Cuántas personas trabajan en tu empresa?</h2><p class="hint">Contando a todo el equipo, incluido tú.</p>'
+    + opts('size',SIZES,S.size) + '<span class="err" id="e-size"></span>' + nav() + '</div>';
+  else if (i===3) h = '<div class="step"><h2>¿Qué te frena más al empezar la semana?</h2><p class="hint">Elige la que más se parezca a tu lunes.</p>'
+    + opts('pain',PAINS,S.pain) + '<input class="in other" id="painOther" placeholder="Cuéntanos en pocas palabras" value="'+esc(S.painOther)+'"'+(S.pain==='Otro'?'':' hidden')+'><span class="err" id="e-pain"></span>' + nav() + '</div>';
+  else if (i===4) h = '<div class="step"><h2>Tus datos, bien cuidados</h2>'
+    + '<div class="priv" tabindex="0" aria-label="Aviso de privacidad simplificado"><h3>Aviso de privacidad simplificado</h3>'
+    + '<p><b>Academia Veritas</b> es responsable del tratamiento de los datos personales que nos proporcionas en este formulario: nombre, WhatsApp, correo, empresa, puesto, tamaño de la empresa y tu respuesta sobre la semana.</p>'
+    + '<p><b>Los usamos para:</b></p><ul><li>Registrarte en el Lunes Causal y enviarte el enlace y los recordatorios por WhatsApp.</li><li>Darle seguimiento a tu participación y adaptar el contenido de las sesiones.</li></ul>'
+    + '<p><b>Con tu autorización, también para:</b> enviarte información sobre otros servicios y eventos de la Academia. Puedes negarte marcando o no la segunda casilla, y eso no afecta tu registro.</p>'
+    + '<p>No vendemos ni compartimos tus datos con terceros para fines comerciales. Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición (ARCO), o retirar tu consentimiento, escribiendo a <b>'+EMAIL+'</b>. Consulta el <a href="'+PRIVACY+'" target="_blank" rel="noopener">aviso de privacidad integral</a>, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.</p></div>'
+    + '<label class="check req" id="c-privacy"><input type="checkbox" id="privacy"'+(S.privacy?' checked':'')+'><span>He leído y acepto el aviso de privacidad, y autorizo el uso de mis datos para registrarme y recibir el enlace y los recordatorios del Lunes Causal.</span></label>'
+    + '<label class="check"><input type="checkbox" id="promo"'+(S.promo?' checked':'')+'><span>Quiero recibir información sobre otros servicios y eventos de Academia Veritas. <span style="color:var(--mute)">(Opcional)</span></span></label>'
+    + '<span class="err" id="e-privacy"></span>' + nav(false,'Revisar mi registro') + '</div>';
+  else h = summaryView();
+  card.innerHTML = h;
+  bind();
+  const first = card.querySelector('input.in:not([hidden]), input[type=radio]:checked, input[type=radio], input[type=checkbox], .btn.wa');
+  if (first && window.matchMedia('(min-width:861px)').matches) first.focus({preventScroll:true});
+}
+
+function role(){ return S.role==='Otro' ? (S.roleOther.trim()||'Otro') : S.role; }
+function pain(){ return S.pain==='Otro' ? (S.painOther.trim()||'Otro') : S.pain; }
+function phoneFull(){ const d = S.phone.replace(/\D/g,''); return S.cc==='other' ? '+'+d : '+'+S.cc+' '+d; }
+function clave(){
+  const top = ['Dueño o socio','Director general'].includes(S.role);
+  const big = ['15 a 50','51 a 150','Más de 150'].includes(S.size);
+  if (top && big) return 'A';
+  if ((top && S.size==='5 a 14') || (S.role==='Gerente o mando medio' && big)) return 'B';
+  return 'C';
+}
+function message(){
+  return 'Hola, Academia Veritas. Quiero registrarme al Lunes Causal del ' + NM_TXT + ' (6:00 a 6:15 a.m.).\n\n'
+    + '• Nombre: ' + S.name.trim() + '\n'
+    + '• WhatsApp: ' + phoneFull() + '\n'
+    + (S.email.trim() ? '• Correo: ' + S.email.trim() + '\n' : '')
+    + '• Empresa: ' + S.company.trim() + '\n'
+    + '• Puesto: ' + role() + '\n'
+    + '• Personas en la empresa: ' + S.size + '\n'
+    + '• Lo que más me frena al empezar la semana: ' + pain() + '\n'
+    + '• Aviso de privacidad: aceptado\n'
+    + '• Información de otros servicios: ' + (S.promo ? 'sí' : 'no') + '\n\n'
+    + 'Registro LC-' + clave();
+}
+const waLink = () => 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(message());
+
+function summaryView(){
+  const rows = [['Nombre',S.name,0],['WhatsApp',phoneFull(),0],['Correo',S.email||'—',0],['Empresa',S.company,1],['Puesto',role(),1],['Personas',S.size,2],['Lo que te frena',pain(),3],['Privacidad','Aceptado'+(S.promo?' · Recibir información: sí':''),4]];
+  return '<div class="step"><h2>Revisa y envía tu registro</h2><p class="hint">Se abre WhatsApp con tu registro escrito. Solo tienes que tocar enviar.</p>'
+    + '<dl class="sum" style="margin:0">' + rows.map(r=>'<div><dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd><button type="button" data-go="'+r[2]+'">Editar</button></div>').join('') + '</dl>'
+    + '<a class="btn wa" id="wa" href="'+waLink()+'" target="_blank" rel="noopener">'+ICON_WA+'Enviar registro por WhatsApp</a>'
+    + '<div class="fallback"><span>¿No se abrió WhatsApp? Copia tu registro y envíalo a este número:</span><div class="row"><code>'+WHATSAPP_TXT+'</code><button type="button" class="mini" id="cpNum">Copiar número</button><button type="button" class="mini" id="cpMsg">Copiar registro</button></div><span class="note" id="cpOk" aria-live="polite"></span></div>'
+    + '<div class="nav"><button type="button" class="btn ghost" id="back">← Atrás</button><button type="button" class="btn ghost" id="sentBtn">Ya lo envié</button></div></div>';
+}
+function doneView(){
+  return '<div class="step done"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>'
+    + '<h2>Nos vemos el ' + NM_TXT + ' a las 6:00 a.m.</h2>'
+    + '<p>Cuando recibamos tu mensaje confirmamos tu lugar. El domingo a las 8:00 p.m. te llega el enlace de Zoom y el lunes a las 5:45 a.m. un recordatorio.</p>'
+    + '<p class="note">Para la sesión, ten a la mano una hoja o tu libreta. Si no ves nuestra respuesta, escríbenos al <b>'+WHATSAPP_TXT+'</b>.</p>'
+    + '<div class="nav" style="width:100%"><button type="button" class="btn ghost" id="again">Registrar a otra persona</button><a class="btn ghost" href="'+waLink()+'" target="_blank" rel="noopener">Volver a abrir WhatsApp</a></div></div>';
+}
+
+function setErr(id, msg, el){ const e=$('#e-'+id); if(e) e.textContent=msg||''; if(el) el.setAttribute('aria-invalid', msg?'true':'false'); return !msg; }
+function validate(){
+  const i = S.step; let ok = true;
+  if (i===0){
+    ok = setErr('name', S.name.trim().length<3 ? 'Escribe tu nombre para saber a quién saludar.' : '', $('#name')) && ok;
+    const d = S.phone.replace(/\D/g,'');
+    const bad = S.cc==='other' ? (d.length<8 || d.length>15) : d.length!==10;
+    ok = setErr('phone', bad ? (S.cc==='other' ? 'Escribe el número con lada del país, solo dígitos.' : 'El WhatsApp debe tener 10 dígitos, por ejemplo 81 1234 5678.') : '', $('#phone')) && ok;
+    ok = setErr('email', S.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(S.email.trim()) ? 'Revisa el correo o déjalo vacío.' : '', $('#email')) && ok;
+  }
+  if (i===1){
+    ok = setErr('company', S.company.trim().length<2 ? 'Escribe el nombre de tu empresa.' : '', $('#company')) && ok;
+    ok = setErr('role', !S.role ? 'Elige tu puesto.' : (S.role==='Otro' && !S.roleOther.trim() ? 'Escribe tu puesto.' : '')) && ok;
+  }
+  if (i===2) ok = setErr('size', !S.size ? 'Elige el tamaño de tu empresa.' : '');
+  if (i===3) ok = setErr('pain', !S.pain ? 'Elige una opción.' : (S.pain==='Otro' && !S.painOther.trim() ? 'Cuéntanos qué te frena.' : ''));
+  if (i===4){ ok = setErr('privacy', !S.privacy ? 'Para registrarte necesitamos que aceptes el aviso de privacidad.' : ''); $('#c-privacy').setAttribute('aria-invalid', S.privacy?'false':'true'); }
+  if (!ok){ const bad = $('#card [aria-invalid="true"], #card .err:not(:empty)'); if (bad && bad.focus) bad.focus(); }
+  return ok;
+}
+
+function bind(){
+  const card = $('#card');
+  card.querySelectorAll('input.in, select.in').forEach(el => el.addEventListener('input', () => {
+    if (el.id==='phone'){ const d = el.value.replace(/\D/g,'').slice(0,15); if (S.cc!=='other' && d.length<=10) el.value = d.replace(/^(\d{2})(\d{0,4})(\d{0,4}).*/, (m,a,b,c)=>[a,b,c].filter(Boolean).join(' ')); }
+    S[el.id] = el.value; save(); el.setAttribute('aria-invalid','false'); const e=$('#e-'+(el.id==='cc'?'phone':el.id.replace('Other',''))); if(e) e.textContent='';
+  }));
+  card.querySelectorAll('input[type=radio]').forEach(el => el.addEventListener('change', () => {
+    S[el.name] = el.value; save(); const e=$('#e-'+el.name); if(e) e.textContent='';
+    const other = $('#'+el.name+'Other');
+    if (other){ other.hidden = el.value!=='Otro'; if (!other.hidden) other.focus(); }
+    if (!other || el.value!=='Otro'){ if (el.name!=='role') setTimeout(()=>{ if(S[el.name]===el.value && validate()){ S.step++; save(); render(); } }, 260); }
+  }));
+  card.querySelectorAll('input[type=checkbox]').forEach(el => el.addEventListener('change', () => { S[el.id] = el.checked; save(); if (el.id==='privacy'){ $('#e-privacy').textContent=''; $('#c-privacy').setAttribute('aria-invalid','false'); } }));
+  const back = $('#back'); if (back) back.onclick = () => { S.step--; save(); render(); };
+  card.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { S.step = +b.dataset.go; save(); render(); });
+  const wa = $('#wa'); if (wa) wa.addEventListener('click', () => { setTimeout(()=>{ const s=$('#sentBtn'); if(s){ s.className='btn primary'; s.innerHTML='Ya lo envié'+ICON_ARROW; } }, 400); });
+  const sent = $('#sentBtn'); if (sent) sent.onclick = () => { S.sent = true; render(); };
+  const copy = (txt, ok) => { const out=$('#cpOk'); try{ navigator.clipboard.writeText(txt).then(()=>{out.textContent=ok;},()=>{out.textContent='No se pudo copiar automáticamente: selecciona el texto y cópialo.';}); }catch(e){ out.textContent='No se pudo copiar automáticamente: selecciona el texto y cópialo.'; } };
+  const cn = $('#cpNum'); if (cn) cn.onclick = () => copy(WHATSAPP_TXT, 'Número copiado.');
+  const cm = $('#cpMsg'); if (cm) cm.onclick = () => copy(message(), 'Registro copiado. Pégalo en un chat con el número de arriba.');
+  const again = $('#again'); if (again) again.onclick = () => { S = {name:'',cc:'52',phone:'',email:'',company:'',role:'',roleOther:'',size:'',pain:'',painOther:'',privacy:false,promo:false,step:0,sent:false}; save(); render(); };
+}
+
+$('#f').addEventListener('submit', e => { e.preventDefault(); if (S.step<5 && validate()){ S.step++; save(); render(); } });
+render();
+</script>
+
+</body>
+</html>
